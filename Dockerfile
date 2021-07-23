@@ -1,16 +1,11 @@
-FROM node:13-alpine
+FROM node:10-slim
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
-RUN npm install --production
+RUN npm install --only=production
 
-COPY . .
+COPY . ./
 
-EXPOSE 5000
-
-CMD node index.js
-
-
-
+CMD [ "npm", "start" ]
