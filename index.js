@@ -4,9 +4,11 @@ const os = require('os');
 const app = express();
 
 app.get('/', (req, res) => {
-    res.send(`Hell from ${os.hostname()}`);
+    console.log('Hello world received a request.');
+    const target = process.env.TARGET || 'World';    
+    res.send(`Hello ${target}! I am comming from ${os.hostname()}`);
 })
 
-const port = 5000;
+const port = process.env.PORT || 8080;
 
 app.listen(port, () => console.log(`Listening on port ${port}`))
